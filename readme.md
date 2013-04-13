@@ -10,4 +10,4 @@ You can install the Quickstart either directly from the [Pagoda Box App Cafe](ht
 
 * [Laravel 4 Documentation](http://four.laravel.com)
 * [Laravel 4 Issues](https://github.com/laravel/framework/issues)
-* **Current Version:** v4.0.0-BETA4 (updated April 11, 2013)
+* **Current Version:** v4.0.0-BETA4 (updated April 13, 2013)
