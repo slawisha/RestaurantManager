@@ -14,7 +14,7 @@ web1:
     - app/storage/sessions
     - app/storage/views
   after_build:
-    - "if [ ! -f composer.phar ]; then curl -s http://getcomposer.org/installer | php; fi; php composer.phar install"
+    - "if [ ! -f composer.phar ]; then curl -s http://getcomposer.org/installer | php; fi; php composer.phar install --prefer-source"
   after_deploy:
     - "rm -f app/storage/cache/*"
     - "rm -f app/storage/views/*"
