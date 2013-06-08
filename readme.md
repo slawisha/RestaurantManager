@@ -6,7 +6,7 @@ Provides a Quickstart installation of Laravel 4 including a preconfigured MySQL 
 
 You can install the Quickstart either directly from the [Pagoda Box App Cafe](https://pagodabox.com/cafe/briankiewel/laravel-4), as a Quickstart through your Pagoda Box dashboard during the new application creation process, or by cloning the [GitHub repository](https://github.com/briankiewel/pagodabox-laravel-4) and pushing it to an empty Pagoda Box application repository.
 
-Last updated: 6/7/2013
+Last updated: 6/8/2013
 
 ---
 
