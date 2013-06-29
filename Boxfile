@@ -5,8 +5,11 @@ web1:
     - mbstring
     - mcrypt
     - pdo_mysql
+    - redis
     - zip
     - xcache
+  php_session_save_handler: redis
+  php_session_save_path: "tcp://tunnel.pagodabox.com:6379"
   shared_writable_dirs:
     - app/storage/cache
     - app/storage/logs
@@ -20,3 +23,5 @@ web1:
     - "rm -f app/storage/views/*"
   before_deploy:
     - "php artisan migrate"
+cache1:
+  type: redis
