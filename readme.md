@@ -16,7 +16,7 @@ You can install the Quickstart either directly from the [Pagoda Box App Cafe](ht
 * Edit `bootstrap/start.php` and add your local machine's hostname to the `local` element in the `detectEnvironment` call parameter array
 * Set your local web server to use the `public` folder as the document root
 
-Last updated: 10/12/2013
+Last updated: 10/16/2013
 
 ---
 
