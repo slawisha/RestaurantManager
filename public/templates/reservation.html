@@ -1,0 +1,10 @@
+<div class="container">
+	<div ng-repeat="table in tables">
+		<div class="col-md-2 restaurant-table">
+			<h3>Table No. {{table.number}}</h3>
+			<p>Number of seats: {{table.seats}}</p>
+			<button class="btn btn-sm btn-danger" ng-show="table.reserved==1">Reserved</button>
+			<button class="btn btn-sm btn-success" ng-show="table.reserved==0">Make reservation</button>
+		</div>
+	</div>
+</div>

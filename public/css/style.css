@@ -1,0 +1,81 @@
+
+
+.carousel{
+	width: 100%;
+	margin-top: -20px;
+}
+
+.carousel-caption{
+	color: #fff;
+	width: 100%;
+	text-align: center;
+	padding: 0;
+	left: 0;
+	bottom: 0px;
+	background-color: rgba(0,0,0,0.5);
+}
+
+.carousel-indicators{
+position: absolute;
+top: 15px;
+left: 97%;
+height:20px;	
+}
+
+.carousel-control{
+position: absolute;
+top: 40%;
+left: 15px;
+width: 40px;
+height: 40px;
+margin-top: -20px;
+font-size: 40px;
+font-weight: 100;
+line-height: 30px;
+color: white;
+text-align: center;
+}
+
+/*.right-arrow{
+position: absolute;
+top: 40%;
+left:96%;
+}*/
+
+.tab-pane{margin-bottom: 60px;}
+
+.search-box {
+	margin-top: 40px;
+	/*background: #f8f8f8;
+	border:1px solid #e7e7e7;
+	border-radius: 2px;
+	padding: 10px 0;*/
+}
+
+	.search-box .form-group{
+		margin-right: 20px;
+	}
+
+.tables-container{
+margin-top: 40px;
+/*padding-left: 40px;*/
+}
+
+.restaurant-table{
+	background: url('images/table_bg.jpg');
+	border: 1px solid #cf8e54;
+	border-radius: 5px;
+	margin: 5px;
+	padding: 5px 0;
+	text-align: center;
+}
+
+
+/***helper classes ***/
+.inline{display:inline;}
+
+.breathe{margin: 40px 0;}
+
+.custom-input{width:70%;}
+
+.add-link{margin-top:40px; cursor: pointer}

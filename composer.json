@@ -5,7 +5,12 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"fideloper/proxy": "dev-master"
+		"fideloper/proxy": "dev-master",
+		"nesbot/Carbon": "*"
+	},
+	"require-dev":{
+		"way/generators": "2.*",
+		"fzaninotto/faker": "1.5.*@dev"
 	},
 	"autoload": {
 		"classmap": [
