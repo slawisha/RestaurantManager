@@ -20,6 +20,9 @@ Route::group(['prefix' => 'api/v1/'], function()
 	Route::post('/reservations/check', 'ReservationsController@check');
 	Route::post('/reservations', 'ReservationsController@store');
 	Route::get('/reservations', 'ReservationsController@index');
+	Route::get('/reservations/{id}', 'ReservationsController@show');
+	Route::put('/reservations/{id}', 'ReservationsController@update');
+	Route::delete('/reservations/{id}', 'ReservationsController@destroy');
 	Route::get('/users', 'UsersController@index');
 	Route::get('/users/{id}', 'UsersController@show');
 	Route::put('/users/{id}', 'UsersController@update');

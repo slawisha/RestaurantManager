@@ -1,7 +1,18 @@
 <?php
 use Carbon\Carbon;
+use Petrovic\Transformers\ReservationTransformer;
 
 class ReservationsController extends \BaseController {
+
+	/**
+	 * @var Petrovic\Transformers\ReservationTransformer
+	 */
+	protected $reservationTransformer;
+
+	public function __construct(ReservationTransformer $reservationTransformer)
+	{
+		$this->reservationTransformer = $reservationTransformer;
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -11,8 +22,8 @@ class ReservationsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$reservations = Reservation::all();
-		return Response::json(['data' => $reservations->toArray()], 200);
+		$reservations = Reservation::with('User')->get();
+		return Response::json(['data' => $this->reservationTransformer->transformCollection($reservations->toArray())], 200);
 	}
 
 	/**
@@ -62,7 +73,8 @@ class ReservationsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$reservation = Reservation::find($id);
+		return Response::json(['data' => $this->reservationTransformer->transform($reservation)], 200);
 	}
 
 	/**
@@ -86,7 +98,13 @@ class ReservationsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$user = User::whereUsername(Input::get('username'))->first();
+		$reservation = Reservation::find($id);
+		$reservation->user_id = $user->id;
+		$reservation->table_id = Input::get('table');
+		$reservation->reservation_start = Input::get('start');
+		$reservation->reservation_end = Input::get('end');
+		$reservation->save();
 	}
 
 	/**
@@ -98,7 +116,8 @@ class ReservationsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		Reservation::find($id)->delete();
+		return Response::json(['data' => 'Reservation deleted'], 200);
 	}
 
 	public function check()

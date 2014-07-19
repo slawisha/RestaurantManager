@@ -3,6 +3,7 @@
 		.controller('tableController', function($scope, tableService, authService, reservationService){
 
 			$scope.logged = null;
+			$scope.showForm = false;
 			$scope.start =7;
 			$scope.end = 23;
 			$scope.hours = [];
@@ -64,22 +65,21 @@
 				}
 			}
 
-			
 
 			//datePicker
 			$scope.today = function() {
     			$scope.dt = new Date();
   			};
-  		$scope.today();
+  			$scope.today();
 
 		  $scope.clear = function () {
 		    $scope.dt = null;
 		  };
 
 		  // Disable weekend selection
-		  $scope.disabled = function(date, mode) {
-		    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-		  };
+		  // $scope.disabled = function(date, mode) {
+		  //   return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+		  // };
 
 		  $scope.toggleMin = function() {
 		    $scope.minDate = $scope.minDate ? null : new Date();

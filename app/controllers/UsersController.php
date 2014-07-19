@@ -1,6 +1,18 @@
 <?php
 
+use Petrovic\Transformers\UserTransformer as UserTransformer;
+
 class UsersController extends \BaseController {
+
+	/**
+	 * @var Petrovic\Transformers\UserTransformer 
+	 */
+	protected $userTransformer;
+
+	public function __construct(UserTransformer $userTransformer)
+	{
+		$this->userTransformer = $userTransformer;
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -10,18 +22,9 @@ class UsersController extends \BaseController {
 	 */
 	public function index()
 	{
-		
-		//return User::with('role')->paginate(5);
 		$users = User::with('role')->paginate(5); //returns a paginator instance
-		return Response::json(['data'=>$this->transformCollection($users->getCollection()),
-			'paginator'=>[
-				'total' => $users->getTotal(),
-				"per_page"=> $users->getPerPage(),
-			    "current_page"=> $users->getCurrentPage(),
-			    "last_page"=> $users->getLastPage(),
-			    "from" => $users->getFrom(),
-			    "to" => $users->getTo()
-				]
+		return Response::json(['data' => $this->userTransformer->transformCollection($users->getCollection()->all()),
+			'paginator'=> $this->userTransformer->paginate($users)
 			], 200);
 	}
 
@@ -70,7 +73,7 @@ class UsersController extends \BaseController {
 	public function show($id)
 	{
 		$user = User::with('role')->find($id);
-		return Response::json(['data'=>$this->transform($user)], 200);
+		return Response::json(['data' => $this->userTransformer->transform($user)], 200);
 	}
 
 	/**
@@ -108,7 +111,6 @@ class UsersController extends \BaseController {
 		$user->save();
 
 		return Response::json(['data'=>'User saved'], 200);
-
 	}
 
 	/**
@@ -122,25 +124,4 @@ class UsersController extends \BaseController {
 	{
 		User::find($id)->delete();
 	}
-
-	private function transform($user)
-	{
-			return [
-				'id' => $user['id'],
-				'username' => $user['username'],
-				'name' => $user['name'],
-				'email' => $user['email'],
-				'telephone' => $user['telephone'],
-				'address' => $user['address'],
-				'city' => $user['city'],
-				'role' => ucfirst($user['role']['name']),
-				'active' => $user['active']
-			];	
-	}
-
-	private function transformCollection($users)
-	{
-		return array_map([$this, 'transform'], $users->toArray());	
-	}
-
 }

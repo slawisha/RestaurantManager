@@ -10,4 +10,8 @@ class Reservation extends \Eloquent {
 	{
 		return ['created_at', 'updated_at', 'reservation_start', 'reservation_end'];
 	}
+	public function user()
+	{
+		return $this->belongsTo('User');
+	}
 }

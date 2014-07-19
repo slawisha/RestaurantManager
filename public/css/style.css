@@ -79,3 +79,17 @@ margin-top: 40px;
 .custom-input{width:70%;}
 
 .add-link{margin-top:40px; cursor: pointer}
+
+.muted{color:#929292;}
+
+/*** form validation ***/
+.ng-invalid.ng-dirty{
+	border-color: #fa787e;
+}
+
+.ng-valid.ng-dirty{
+	border-color: #78fa89;
+}
+.ng-pristine{
+
+}
