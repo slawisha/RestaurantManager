@@ -86,13 +86,13 @@
 			$scope.searchReservations(currentDate.getDate(), currentDate.getMonth()+1, 
 				currentDate.getFullYear(), $scope.currentTime);
 
-			$scope.makeReservation = function(tableId, day, month , year, time){
+			$scope.makeReservation = function(tableId, tableNumber, day, month , year, time){
 				if($scope.logged == 'OK'){
 					reservationService.create(tableId, day, month , year, time);
 					$scope.reservedTables.push(tableId);
 					//raise an event and send it to the root scope
 					$rootScope.$broadcast('reservation:made');
-					alert('Table' + tableId + ' booked for ' + day + '/' + month + '/' + year + ' ' + time);
+					alert('Table' + tableNumber + ' booked for ' + day + '/' + month + '/' + year + ' ' + time);
 				} else {
 					alert('You must be logged in to make reservations');
 				}

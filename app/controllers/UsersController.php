@@ -152,7 +152,8 @@ class UsersController extends \BaseController {
 	private function saveUser()
 	{
 		$user = new User;
-		$role = (Input::get('role')) ? Role::whereName(strtolower(Input::get('role')))->first() : null;
+		$role = (Input::get('role')) ? Role::whereName(strtolower(Input::get('role')))->first() : 
+		Role::whereName('member')->first();
 		$user->name = Input::get('name');
 		$user->username = Input::get('username');
 		$user->password = Hash::make(Input::get('password'));
@@ -160,7 +161,7 @@ class UsersController extends \BaseController {
 		$user->address = Input::get('address');
 		$user->telephone = Input::get('telephone');
 		$user->city = Input::get('city');
-		$user->role_id = ($role) ? $role->id : 3;
+		$user->role_id =  $role->id;
 		$user->active = (Input::get('active')) ? : 1;
 		$user->save();
 	}

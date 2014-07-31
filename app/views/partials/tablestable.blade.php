@@ -45,7 +45,7 @@
         <em class="muted" ng-show="tablesForm.available.$pristine && tablesForm.available.$invalid">Required</em>
 	</div>
 	<div class="form-group">
-		Image<input type="file" name="thumbnail" ng-model="newThumbnail" class="form-control"> 
+		Image<input type="file" name="thumbnail" ng-model="newThumbnail"> 
 	</div>
 	<div class="form-group">
     	<button class="btn btn-primary" ng-hide="showEdit" ng-click="tablesForm.$valid &&addNewTable(newNumber,newSeats,newPosition,newDescription,newAvailable,newThumbnail)">Add new table</button>
