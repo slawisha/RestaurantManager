@@ -16,8 +16,7 @@
   </head>
   <body ng-app="restaurantApp">
   	@include('partials.navigation')
-    
-    	@yield('content')
+    @yield('content')
     @include('partials.footer')
     <script type="text/javascript">var PUBLICPATH = "{{ URL::to('/') }}"</script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

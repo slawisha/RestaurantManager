@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">  
-<div class="row">  
+<div class="row breathe80">  
 	<div class="col-md-9" ng-controller="tableController">
 	<h3>Reservations</h3>
 	@if(Auth::guest())

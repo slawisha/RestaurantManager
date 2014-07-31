@@ -2,7 +2,8 @@
 
 .carousel{
 	width: 100%;
-	margin-top: -20px;
+	/*margin-top: -20px;*/
+	overflow: hidden;
 }
 
 .carousel-caption{
@@ -80,7 +81,7 @@ margin-top: 40px;
 
 /*** form wrapper ***/
 .form-wrapper{
-	margin-top: 40px;
+	margin-top: 80px;
 	padding: 0;
 }
 
@@ -96,6 +97,7 @@ margin-top: 40px;
 footer{
 	padding-top: 10px;
 	margin-top: 20px;
+	width: 100%;
 }
 footer p, footer a{color: #fff;}
 
@@ -103,6 +105,8 @@ footer p, footer a{color: #fff;}
 .inline{display:inline;}
 
 .breathe{margin: 40px 0;}
+
+.breathe80{margin: 80px 0;}
 
 .center{text-align: center;}
 
