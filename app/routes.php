@@ -22,6 +22,8 @@ Route::controller('password','RemindersController');
 Route::group(['prefix' => 'api/v1/'], function()
 {
 	Route::get('tables', 'TablesController@index');
+	Route::post('tables', 'TablesController@create');
+	Route::delete('tables/{id}', 'TablesController@destroy');
 	Route::get('/users/reservations', 'UsersController@reservations');
 	Route::get('/auth', 'SessionsController@index');
 	Route::post('/reservations/check', 'ReservationsController@check');

@@ -13,7 +13,7 @@
 		<td><img width="120" heigth="72" ng-src="@{{table.image_url}}"/></td>
 		<td>
 		<button class="btn btn-sm btn-warning">Edit</button>
-		<button class="btn btn-sm btn-danger">Delete</button>	
+		<button class="btn btn-sm btn-danger" ng-click="deleteTable(table.id)">Delete</button>	
 		</td></tr>
 	</tbody>
 </table>
@@ -24,10 +24,12 @@
 </ul>
 <form name="tablesForm" ng-show="showForm" class="col-md-4">
 	<div class="form-group">
-		Number<input type="text" name="number" ng-model="newNumber" class="form-control"> 
+		Number<input type="number" name="number" ng-model="newNumber" class="form-control" required> 
+		<em class="muted" ng-show="tablesForm.available.$pristine && tablesForm.available.$invalid">Required</em>
 	</div>
 	<div class="form-group">
-		Seats<input type="number" name="seats" ng-model="newSeats" class="form-control"> 
+		Seats<input type="number" name="seats" ng-model="newSeats" class="form-control" required> 
+		<em class="muted" ng-show="tablesForm.available.$pristine && tablesForm.available.$invalid">Required</em>
 	</div>
 	<div class="form-group">
 		Position<input type="text" name="position" ng-model="newPosition" class="form-control"> 
@@ -36,10 +38,17 @@
 		Description<input type="textarea" name="description" ng-model="newDescription" class="form-control"> 
 	</div>
 	<div class="form-group">
+		Available<select type="text" name="available" ng-model="newAvailable" class="form-control" required>
+		<option>1</option>
+		<option>0</option>
+	    </select>
+        <em class="muted" ng-show="tablesForm.available.$pristine && tablesForm.available.$invalid">Required</em>
+	</div>
+	<div class="form-group">
 		Image<input type="file" name="thumbnail" ng-model="newThumbnail" class="form-control"> 
 	</div>
 	<div class="form-group">
-    	<button class="btn btn-primary" ng-hide="showEdit" ng-click="tablesForm.$valid && addNewTable(newNumber,newSeats,newPosition,newDescription,newThumbnail)">Add new table</button>
+    	<button class="btn btn-primary" ng-hide="showEdit" ng-click="tablesForm.$valid &&addNewTable(newNumber,newSeats,newPosition,newDescription,newAvailable,newThumbnail)">Add new table</button>
     	<button class="btn btn-primary" ng-show="showEdit" ng-click="tablesForm.$valid && updateTable(newNumber,newSeats,newPosition,newDescription,newThumbnaile)">Update table</button>
     	<button class="btn btn-danger" ng-show="showForm" ng-click="toggleForm()">Cancel</button>
 	</div>

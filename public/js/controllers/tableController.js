@@ -158,5 +158,21 @@
 				//emptyFormFields();				
 			}
 
+			$scope.addNewTable = function(number, seats, position, description, available, thumbnail){
+				tableService.create(number, seats, position, description, available, thumbnail)
+						.success(function(response){
+							$scope.message = response.data;
+						});
+				$scope.showForm = false;
+			};
+
+			$scope.deleteTable = function(id){
+				tableService.delete(id)
+					.success(function(response){
+						$scope.message = response.data;
+					});
+				loadTablesByPage(1,7);
+			}
+
 		});
 })();

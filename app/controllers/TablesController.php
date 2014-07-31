@@ -36,7 +36,16 @@ class TablesController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		$table = new Table;
+		$table->number = Input::get('number');
+		$table->seats = Input::get('seats');
+		$table->position = Input::get('position');
+		$table->description = Input::get('description');
+		$table->available = Input::get('available');
+		$table->image_url = (Input::get('thumbnail')) ? : 'http://lorempixel.com/640/480/';
+		$table->save();
+
+		return Response::json(['data'=>'Table saved'], 200);
 	}
 
 	/**
@@ -103,7 +112,8 @@ class TablesController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		Table::find($id)->delete();
+		return Response::json(['data'=>'Table deleted'], 200);
 	}
 
 }
