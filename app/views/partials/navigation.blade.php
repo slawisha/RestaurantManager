@@ -7,16 +7,23 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-            <a class="navbar-brand" href="#">Restaurant Manager</a>
+            <a class="navbar-brand" href="/">Restaurant Manager</a>
             </div>
             <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/reservation">Reservation</a></li>
+            <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="/reservation"><i class="fa fa-check"></i> Reservations</a></li>
             @if(Auth::guest())
-            <li><a href="/login">Login</a></li>
+            <li><a href="/register"><i class="fa fa-user"></i> Register</a></li>
+            <li><a href="/login"><i class="fa fa-lock"></i> Login</a></li>
+            @elseif(checkRole('admin') || checkRole('manager'))
+            <li><a href="/admin"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="/logout"><i class="fa fa-user"></i> Logout ({{Auth::user()->username}})</a></li>
             @else
-            <li><a href="/admin">Dashboard</a></li>
-            <li><a href="/logout">Logout</a></li>
+            <li><a href="/logout"><i class="fa fa-user"></i> Logout ({{Auth::user()->username}})</a></li>
             @endif
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                <li><a href="https://github.com/slawisha/RestaurantManager"><i class="fa fa-github fa-1x"></i> Github</a></li>
+            </ul>
         </nav>
 </header>

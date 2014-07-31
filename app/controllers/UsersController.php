@@ -1,6 +1,7 @@
 <?php
 
 use Petrovic\Transformers\UserTransformer as UserTransformer;
+use Petrovic\Validation\ValidationException;
 
 class UsersController extends \BaseController {
 
@@ -22,7 +23,7 @@ class UsersController extends \BaseController {
 	 */
 	public function index()
 	{
-		$users = User::with('role')->paginate(5); //returns a paginator instance
+		$users = User::with('role')->paginate(7); //returns a paginator instance
 		return Response::json(['data' => $this->userTransformer->transformCollection($users->getCollection()->all()),
 			'paginator'=> $this->userTransformer->paginate($users)
 			], 200);
@@ -47,20 +48,32 @@ class UsersController extends \BaseController {
 	 */
 	public function store()
 	{
-		$user = new User;
-		$role = Role::whereName(strtolower(Input::get('role')))->first();
-		$user->username = Input::get('username');
-		$user->name = Input::get('name');
-		$user->password = Hash::make(Input::get('password'));
-		$user->email = Input::get('email');
-		$user->address = Input::get('address');
-		$user->telephone = Input::get('telephone');
-		$user->city = Input::get('city');
-		$user->role_id = $role->id;
-		$user->active = Input::get('active');
-		$user->save();
-
-		return Response::json(['data'=>'User saved'], 200);
+		//if it is api request will get an array with ['api','v1','users']
+		if( in_array('api', Request::segments()) )
+		{
+			$this->saveUser();
+			return Response::json(['data'=>'User saved'], 200);
+		}
+		//validate
+		try{
+			$data = [
+			'username'=>Input::get('username'), 
+			'email'=>Input::get('email'),
+			'password'=>Input::get('password'),
+			'password_confirmation'=>Input::get('password_confirmation'),
+			'telephone'=>Input::get('telephone'),
+			'address'=>Input::get('address'),
+			'city'=>Input::get('city'),
+			];
+			Event::fire('user.saving', [$data]);
+			$this->saveUser();
+			Auth::loginUsingId(User::orderBy('id','DESC')->first()->id);
+			return Redirect::to('reservation');
+		}
+		catch(ValidationException $e)
+		{
+			return Redirect::back()->withInput()->withErrors($e->getErrors());
+		}
 	}
 
 	/**
@@ -123,5 +136,28 @@ class UsersController extends \BaseController {
 	public function destroy($id)
 	{
 		User::find($id)->delete();
+	}
+
+	public function reservations()
+	{
+		$id = Auth::user()->id;
+		$reservations = User::find($id)->reservations;
+		return Response::json(['data' => $reservations->toArray()], 200);
+	}
+
+	private function saveUser()
+	{
+		$user = new User;
+		$role = (Input::get('role')) ? Role::whereName(strtolower(Input::get('role')))->first() : null;
+		$user->username = Input::get('username');
+		$user->name = Input::get('name');
+		$user->password = Hash::make(Input::get('password'));
+		$user->email = Input::get('email');
+		$user->address = Input::get('address');
+		$user->telephone = Input::get('telephone');
+		$user->city = Input::get('city');
+		$user->role_id = ($role) ? $role->id : 3;
+		$user->active = (Input::get('active')) ? : 1;
+		$user->save();
 	}
 }

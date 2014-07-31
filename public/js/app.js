@@ -6,10 +6,6 @@
 					controller : 'indexController',
 					templateUrl : 'templates/index.html'  
 				}).
-				when('/admin/users', {
-					controller : 'usersController',
-					templateUrl : 'templates/new-user.html'  
-				}).
 				otherwise({
 					redirectTo: '/'
 				});

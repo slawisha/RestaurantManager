@@ -10,7 +10,8 @@ class ReservationTransformer extends Transformer{
 			'username' => $reservation['user']['username'],
 			'table' => $reservation['table_id'],
 			'reservation_start' => $reservation['reservation_start'],
-			'reservation_end' => $reservation['reservation_end']
+			'reservation_end' => $reservation['reservation_end'],
+			'active' => $reservation['active']
 		];
 	}
 }

@@ -1,12 +1,14 @@
 @extends('layouts.master')
 @section('content')
-	<div class="container">
-	<h1 class="breathe">Admin section</h1>
+	<div class="container" ng-controller="adminController">
+	<h1 class="breathe">Dashboard</h1>
 		<tabset>
+			@if(checkRole('admin'))
 			<tab ng-controller="usersController">
 				<tab-heading><i class="fa fa-user"></i> Users</tab-heading>
 					@include('partials.userstable')	
 			</tab>
+			@endif
 			<tab ng-controller="tableController">
 				<tab-heading><i class="fa fa-coffee"></i> Tables</tab-heading>
 				@include('partials.tablestable')

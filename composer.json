@@ -21,6 +21,9 @@
 			"app/database/seeds",
 			"app/tests/TestCase.php"
 		],
+		"files": [
+			"app/Petrovic/helpers.php"
+		],
 		"psr-4":{
 			"Petrovic\\": "app/Petrovic"
 		}

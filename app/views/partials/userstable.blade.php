@@ -18,6 +18,11 @@
 		</tr>
 	</tbody>	
 </table>
+<ul class="pagination" ng-hide="showForm">
+    <li ng-class="{'disabled':currentPage==1}"><a ng-click="loadFirstPage()">&laquo;</a></li>
+    <li ng-repeat="page in pages" ng-class="{'active':page==currentPage}"><a  ng-click="loadNthPage(page)">@{{page}}</a></li>
+    <li ng-class="{'disabled':currentPage==lastPage}"><a ng-click="loadLastPage()">&raquo;</a></li>
+</ul>
 
 <form ng-show="showForm" name="usersForm" class="col-md-4" novalidate>
 	<div class="form-group">

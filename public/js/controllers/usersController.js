@@ -1,12 +1,41 @@
 (function(){
 	angular.module('restaurantApp')
-		.controller('usersController', function($scope, userService){
+		.controller('usersController', function($scope, $rootScope, userService, reservationService){
+
+			$scope.pages = [];
+
 			var getUsers = function(){
-				userService.all()
+				userService.all(1)
 					.success(function(response){
-						$scope.users = response.data; 
+						$scope.users = response.data;
+						$scope.currentPage = response.paginator.current_page;
+						$scope.lastPage = response.paginator.last_page;
+						for (i=1; i<=$scope.lastPage; i++){
+							$scope.pages.push(i);
+						}  
 					});
 			}
+
+			var loadUsersByPage = function(page) {
+				userService.all(page)
+					.success(function(response){
+						$scope.users = response.data;
+					});
+					$scope.currentPage = page;
+			}
+
+			$scope.loadFirstPage = function(){
+				loadUsersByPage(1);
+			}
+
+			$scope.loadLastPage = function(){
+				loadUsersByPage($scope.lastPage);
+			}
+
+			$scope.loadNthPage = function(page){
+				loadUsersByPage(page);
+			}
+
 
 			var emptyFormFields = function(){
 				$scope.newUsername = null;
@@ -20,7 +49,15 @@
 				$scope.newActive = null;
 			}
 
+			var getUserReservations = function(){
+				userService.reservations()
+					.success(function(response){
+						$scope.userReservations = response.data;
+					});
+			}
+
 			getUsers();
+			getUserReservations();
 
 			$scope.showForm = false;
 			$scope.showEdit = false;
@@ -76,5 +113,19 @@
 				userService.delete(id);
 				getUsers();
 			}
+
+			$scope.deleteReservation = function(id){
+				reservationService.delete(id);
+				$rootScope.$broadcast('reservation:deleted');
+				//load reservations in the sidebar panel
+				getUserReservations();
+			}
+
+			//listen to event reservation:made raised inside tablesController inside method makeReservation
+			$scope.$on('reservation:made', function(event){
+				getUserReservations();
+			});
+
+
 		});
 })();

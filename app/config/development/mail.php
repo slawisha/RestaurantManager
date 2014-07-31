@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => getenv('APP_EMAIL'), 'name' => 'Restaurant manager'),
+	'from' => array('address' => 'mica050207@gmail.com', 'name' => 'Restaurant manager'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => getenv('APP_EMAIL'),
+	'username' => 'mica050207@gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => getenv('APP_EMAIL_PASS'),
+	'password' => 'barbi050207',
 
 	/*
 	|--------------------------------------------------------------------------

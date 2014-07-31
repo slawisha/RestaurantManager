@@ -1,6 +1,18 @@
 <?php
 
+use Petrovic\Transformers\TableTransformer;
+
 class TablesController extends \BaseController {
+
+	/**
+	 * @var Petrovic\Transformers\TableTransformer
+	 */
+	protected $tableTransformer;
+
+	public function __construct(TableTransformer $tableTransformer)
+	{
+		$this->tableTransformer = $tableTransformer;
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -10,8 +22,10 @@ class TablesController extends \BaseController {
 	 */
 	public function index()
 	{
-		$tables =  Table::all();
-		return  Response::json(['data' => $tables->toArray()], 200);
+		$perPage = Input::get('perPage');
+		$tables =  Table::paginate($perPage);
+		return  Response::json(['data' => $this->tableTransformer->transformCollection($tables->getCollection()->all()),
+			'paginator' => $this->tableTransformer->paginate($tables)], 200);
 	}
 
 	/**

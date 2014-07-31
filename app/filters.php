@@ -54,6 +54,11 @@ Route::filter('auth.basic', function()
 	return Auth::basic();
 });
 
+Route::filter('member', function(){
+	if(checkRole('member')) 
+	return Redirect::to('reservation'); 
+});
+
 /*
 |--------------------------------------------------------------------------
 | Guest Filter

@@ -22,8 +22,9 @@ class ReservationsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$reservations = Reservation::with('User')->get();
-		return Response::json(['data' => $this->reservationTransformer->transformCollection($reservations->toArray())], 200);
+		$reservations = Reservation::with('User')->orderBy('reservation_start','ASC')->paginate(8);
+		return Response::json(['data' => $this->reservationTransformer->transformCollection($reservations->getCollection()->all()),
+			'paginator' => $this->reservationTransformer->paginate($reservations)], 200);
 	}
 
 	/**
@@ -104,6 +105,7 @@ class ReservationsController extends \BaseController {
 		$reservation->table_id = Input::get('table');
 		$reservation->reservation_start = Input::get('start');
 		$reservation->reservation_end = Input::get('end');
+		$reservation->active = Input::get('active');
 		$reservation->save();
 	}
 

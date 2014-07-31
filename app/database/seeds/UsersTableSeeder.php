@@ -42,7 +42,7 @@ class UsersTableSeeder extends Seeder {
 			User::create([
 				'username' => $faker->username,
 				'email' => $faker->email,
-				'password' => Hash::make('1234'),
+				'password' => Hash::make('123456'),
 				'name' => $faker->name,
 				'telephone' => $faker->numerify($string = '#########'),
 				'address' => $faker->streetAddress,

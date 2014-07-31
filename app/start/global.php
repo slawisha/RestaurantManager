@@ -79,3 +79,10 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+/*
+|--------------------------------------------------------------------------
+| Register event listeners
+|--------------------------------------------------------------------------
+*/
+Event::listen('user.saving', 'Petrovic\Validation\UserValidator@fire');

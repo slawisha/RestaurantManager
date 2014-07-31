@@ -6,6 +6,7 @@
     <!-- Bootstrap -->
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/united/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}" >    
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -17,7 +18,7 @@
   	@include('partials.navigation')
     
     	@yield('content')
-    
+    @include('partials.footer')
     <script type="text/javascript">var PUBLICPATH = "{{ URL::to('/') }}"</script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
@@ -30,8 +31,9 @@
     <script src="js/services/authService.js"></script>
     <script src="js/services/reservationService.js"></script>
     <script src="js/services/userService.js"></script>
-    <script src="js/controllers/tableController.js"></script>
     <script src="js/controllers/indexController.js"></script>
+    <script src="js/controllers/adminController.js"></script>
+    <script src="js/controllers/tableController.js"></script>
     <script src="js/controllers/usersController.js"></script>
     <script src="js/controllers/reservationsController.js"></script>
   </body>

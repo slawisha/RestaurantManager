@@ -2,8 +2,8 @@
 	angular.module('restaurantApp')
 		.factory('tableService', function($http){
 			return {
-				all: function(){
-					return $http.get('/api/v1/tables');
+				all: function(page, perPage){
+					return $http.get('/api/v1/tables/?page=' + page + '&perPage=' + perPage);
 				}
 			}
 		});

@@ -2,8 +2,8 @@
 	angular.module('restaurantApp')
 		.factory('userService', function($http){
 			return{
-				all: function(){
-					return $http.get('api/v1/users');
+				all: function(page){
+					return $http.get('api/v1/users/?page=' + page);
 				},
 				save: function(username, password, name, email, telephone, address, city, role, active) {
 					return $http({
@@ -29,6 +29,9 @@
 						method: 'DELETE',
 						url: 'api/v1/users/' + id
 					});
+				},
+				reservations: function(){
+					return $http.get('api/v1/users/reservations');
 				}
 			}
 		})

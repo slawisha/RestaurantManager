@@ -2,8 +2,8 @@
 	angular.module('restaurantApp')
 		.factory('reservationService', function($http){
 			return{
-				all: function(){
-					return $http.get('api/v1/reservations');
+				all: function(page){
+					return $http.get('api/v1/reservations/?page=' + page);
 				},
 				create: function(tableId, day, month , year, time){
 					return $http({
@@ -15,11 +15,11 @@
 				show: function(id){
 					return $http.get('api/v1/reservations/' +  id);
 				},
-				update: function(id, username, table, start, end){
+				update: function(id, username, table, start, end, active){
 					return $http({
 						method: 'PUT',
 						url: 'api/v1/reservations/' + id,
-						params: {username:username, table:table, start: start, end: end}
+						params: {username:username, table:table, start: start, end: end, active:active}
 					});
 				},
 				delete: function(id){

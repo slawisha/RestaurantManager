@@ -3,9 +3,10 @@
 @section('content')
 	<div class="container">
 
-		<div class="login col-md-4 col-md-offset-4">
-		<h3 class="username center">Welcome. Please sign in.</h3>
-		{{ Form::open(['url' =>'sessions/store']) }} 
+		<div class="form-wrapper col-md-4 col-md-offset-4 panel panel-primary">
+		<div class="panel-heading  center">Welcome. Please sign in.</div>
+		<div class="panel-body">
+		{{ Form::open(['url' =>'sessions/store', 'class'=>'form']) }} 
 		<div class="form-group">
 		{{ Form::label('email', 'Email') }}
 		{{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'johnsmith@something.com'])}}
@@ -23,6 +24,7 @@
 			{{ link_to('password/remind','Forgot your password?')}}
 		</div>
 		{{ Form::close() }}
+		</div>
 		</div>
 
 	</div>
