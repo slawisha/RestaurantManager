@@ -41,7 +41,7 @@
 			<p>Number of seats: @{{table.seats}}</p>
 			<button class="btn btn-sm btn-danger" ng-show="reservedTables.indexOf(table.id)!=-1" style="cursor:auto;">Reserved</button>
 			<a class="btn btn-sm btn-success" ng-show="reservedTables.indexOf(table.id)==-1" 
-          ng-click="makeReservation(table.id, table.number dt.getDate(), dt.getMonth()+1, dt.getFullYear(), time)">Make reservation</a>
+          ng-click="makeReservation(table.id, table.number, dt.getDate(), dt.getMonth()+1, dt.getFullYear(), time)">Make reservation</a>
 		</div>
 	</div><!-- end tables container -->
   </div><!--end col-md-10-->
