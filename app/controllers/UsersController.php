@@ -1,6 +1,7 @@
 <?php
 
 use Petrovic\Transformers\UserTransformer as UserTransformer;
+use Petrovic\Transformers\UserReservationsTransformer as UserReservationsTransformer;
 use Petrovic\Validation\ValidationException;
 
 class UsersController extends \BaseController {
@@ -10,9 +11,10 @@ class UsersController extends \BaseController {
 	 */
 	protected $userTransformer;
 
-	public function __construct(UserTransformer $userTransformer)
+	public function __construct(UserTransformer $userTransformer, UserReservationsTransformer $userReservationsTransformer)
 	{
 		$this->userTransformer = $userTransformer;
+		$this->userReservationsTransformer = $userReservationsTransformer;
 	}
 
 	/**
@@ -142,15 +144,17 @@ class UsersController extends \BaseController {
 	{
 		$id = Auth::user()->id;
 		$reservations = User::find($id)->reservations;
-		return Response::json(['data' => $reservations->toArray()], 200);
+		//return Table::find($reservations->table_id)->number;
+		return Response::json(['data' => 
+			$this->userReservationsTransformer->transformCollection($reservations->toArray())], 200);
 	}
 
 	private function saveUser()
 	{
 		$user = new User;
 		$role = (Input::get('role')) ? Role::whereName(strtolower(Input::get('role')))->first() : null;
-		$user->username = Input::get('username');
 		$user->name = Input::get('name');
+		$user->username = Input::get('username');
 		$user->password = Hash::make(Input::get('password'));
 		$user->email = Input::get('email');
 		$user->address = Input::get('address');

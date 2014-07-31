@@ -6,8 +6,13 @@
 	<div class="panel-body">
 	{{Form::open(['url' => 'users/store','role'=>'form' , 'name' => 'register', 'class'=>'form', 'novalidate' => '']) }}
 	<div class="form-group">
-		Username<input type="text" name="username" ng-model="newUsername" class="form-control" placeholder="johnsmith" required ng-minlength=5>
-	    <em class="muted" ng-show="register.username.$dirty && register.username.$invalid">Minimum 5 characters</em>
+		First and last Name<input type="text" name="name" ng-model="Name" class="form-control" placeholder="John Smith" required ng-minlength=5>
+	    <em class="muted" ng-show="register.name.$dirty && register.name.$invalid">Minimum 5 characters</em>
+		{{ $errors->first('name','<em class="muted" ng-hide="register.name.$dirty">:message</em>') }}
+	</div>
+	<div class="form-group">
+		Username<input type="text" name="username" ng-model="newUsername" class="form-control" placeholder="johnsmith" required ng-minlength=6>
+	    <em class="muted" ng-show="register.username.$dirty && register.username.$invalid">Minimum 6 characters</em>
 		{{ $errors->first('username','<em class="muted" ng-hide="register.username.$dirty">:message</em>') }}
 	</div>
 	<div class="form-group">

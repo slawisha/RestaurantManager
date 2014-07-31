@@ -54,7 +54,8 @@
       <div class="panel-body">
         <ul class="list-group">
           <li class="list-group-item" ng-repeat="reservation in userReservations | orderBy:'reservation_start'" ng-show="reservation.active==1">
-               <div>Table: @{{reservation.table_id}}</div>
+              <!-- table number instead table_id-->
+               <div>Table: @{{reservation.table_number}}</div>
               <div>Time: @{{reservation.reservation_start}}</div>
               <div><button class="btn btn-sm btn-danger" ng-click="deleteReservation(reservation.id)">Cancel</button></div>
           </li>
