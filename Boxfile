@@ -4,11 +4,10 @@ web1:
   php_extensions:
     - mbstring
     - mcrypt
-    - pdo_sqlite
+    - pdo_mysql
     - redis
     - zip
     - xcache
-    - sqlite
   php_session_save_handler: redis
   php_session_save_path: "tcp://tunnel.pagodabox.com:6379"
   shared_writable_dirs:
