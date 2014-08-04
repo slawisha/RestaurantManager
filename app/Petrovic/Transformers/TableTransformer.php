@@ -6,8 +6,8 @@ class TableTransformer extends Transformer{
 	{
 		return [
 			'id' => $table['id'],
-			'number' => $table['number'],
-			'seats' => $table['seats'],
+			'number' => (int)$table['number'],
+			'seats' => (int)$table['seats'],
 			'position' => $table['position'],
 			'description' => $table['description'],
 			'available' => $table['available'],

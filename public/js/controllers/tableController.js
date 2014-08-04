@@ -23,6 +23,15 @@
 			//set $scope.time to current time
 			$scope.time = $scope.currentTime;
 
+			var emptyFormFields = function(){
+				$scope.newNumber = null;
+				$scope.newSeats = null;
+				$scope.newPosition = null;
+				$scope.newDescription = null;
+				$scope.newAvailable = null;
+				$scope.newThumbnail = null;
+			}
+
 
 			var loadTables = function(){
 				tableService.all(1,20)
@@ -164,6 +173,34 @@
 							$scope.message = response.data;
 						});
 				$scope.showForm = false;
+				emptyFormFields();
+			};
+
+			$scope.editTable = function(id){
+				$scope.showForm = true;
+				$scope.tableId = id;
+				tableService.show(id)
+					.success(function(response){
+						$scope.newNumber = response.data.number;
+						$scope.newSeats = response.data.seats;
+						$scope.newPosition = response.data.position;
+						$scope.newDescription = response.data.description;
+						$scope.newAvailable = response.data.available;
+						$scope.newThumbnail = response.data.image_url;
+					});
+				$scope.showEdit = true;
+				loadTablesByPage(1,7);
+			}
+
+			$scope.updateTable = function(id, number, seats, position, description, available, thumbnail){
+				console.log(thumbnail);
+				tableService.update(id, number, seats, position, description, available, thumbnail)
+						.success(function(response){
+							$scope.message = response.data;
+						});
+				$scope.showForm = false;
+				emptyFormFields();
+				loadTablesByPage(1,7);
 			};
 
 			$scope.deleteTable = function(id){
@@ -171,7 +208,6 @@
 					.success(function(response){
 						$scope.message = response.data;
 					});
-				loadTablesByPage(1,7);
 			}
 
 		});

@@ -42,9 +42,8 @@ class TablesController extends \BaseController {
 		$table->position = Input::get('position');
 		$table->description = Input::get('description');
 		$table->available = Input::get('available');
-		$table->image_url = (Input::get('thumbnail')) ? : 'http://lorempixel.com/640/480/';
+		$table->image_url = (Input::file('thumbnail')) ? : '/upload/table_thumb.jpg';
 		$table->save();
-
 		return Response::json(['data'=>'Table saved'], 200);
 	}
 
@@ -68,7 +67,8 @@ class TablesController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$table = Table::find($id);
+		return Response::json(['data' => $this->tableTransformer->transform($table)], 200);
 	}
 
 	/**
@@ -92,7 +92,17 @@ class TablesController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		//dd(Input::all());
+		$table = Table::find($id);
+		$table->number = Input::get('number');
+		$table->seats = Input::get('seats');
+		$table->position = Input::get('position');
+		$table->description = Input::get('description');
+		$table->available = Input::get('available');
+		$table->image_url = (Input::file('thumbnail')) ? : '/upload/table_thumb.jpg';
+		$table->save();
+
+		return Response::json(['data'=>'Table updated'], 200);
 	}
 
 	public function reserve($id)

@@ -37,7 +37,7 @@
     </form>
 	<div class="tables-container row">
 		<div class="col-md-2 restaurant-table " ng-repeat="table in tables">
-			<h3>Table No. @{{table.number}}</h3>
+			<h3 style="cursor:pointer" tooltip-html-unsafe='<p>Position:@{{table.position}}</p><img style="display:block;" width="320" height="225" src="@{{table.image_url}}"/><p>Description: @{{table.description}}</p>' tooltip-placement="right" tooltip-append-to-body="false">Table No. @{{table.number}}</h3>
 			<p>Number of seats: @{{table.seats}}</p>
 			<button class="btn btn-sm btn-danger" ng-show="reservedTables.indexOf(table.id)!=-1" style="cursor:auto;">Reserved</button>
 			<a class="btn btn-sm btn-success" ng-show="reservedTables.indexOf(table.id)==-1" 
