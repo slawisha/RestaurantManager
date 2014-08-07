@@ -23,8 +23,9 @@ Route::group(['prefix' => 'api/v1/'], function()
 {
 	Route::get('tables', 'TablesController@index');
 	Route::get('tables/{id}', 'TablesController@show');
-	Route::post('tables', 'TablesController@create');
-	Route::put('tables/{id}', 'TablesController@update');
+	Route::post('tables', 'TablesController@store');
+	//because Symphony HTTP Foundation can not understand 'Content-Type':'multipart/form-data' when using put
+	Route::post('tables/{id}', 'TablesController@update');
 	Route::delete('tables/{id}', 'TablesController@destroy');
 	Route::get('/users/reservations', 'UsersController@reservations');
 	Route::get('/auth', 'SessionsController@index');

@@ -1,5 +1,5 @@
 (function(){
-	var restaurantApp = angular.module('restaurantApp', ['ngRoute','ui.bootstrap']);
+	var restaurantApp = angular.module('restaurantApp', ['ngRoute','ui.bootstrap', 'angularFileUpload']);
 		restaurantApp.config(function($routeProvider, $locationProvider){
 			$routeProvider.
 				when('/', {

@@ -1,6 +1,6 @@
 (function(){
 	angular.module('restaurantApp')
-		.controller('tableController', function($scope, $rootScope, tableService, authService, reservationService){
+		.controller('tableController', function($scope, $rootScope, $upload, tableService, authService, reservationService){
 
 			$scope.logged = null;
 			$scope.hideSpinner = true;
@@ -55,6 +55,7 @@
 			var loadTablesByPage = function(page, perPage) {
 				tableService.all(page, perPage)
 					.success(function(response){
+						$scope.pages = [];
 						$scope.tablesBackend = response.data;
 						$scope.currentPage = response.paginator.current_page;
 						$scope.lastPage = response.paginator.last_page;
@@ -167,14 +168,12 @@
 				//emptyFormFields();				
 			}
 
-			$scope.addNewTable = function(number, seats, position, description, available, thumbnail){
-				tableService.create(number, seats, position, description, available, thumbnail)
-						.success(function(response){
-							$scope.message = response.data;
-						});
-				$scope.showForm = false;
-				emptyFormFields();
-			};
+			// $scope.filesChanged = function(element){
+			// 	$scope.thumbnail = element.files;
+			// 	$scope.$apply();				
+			// }
+
+			
 
 			$scope.editTable = function(id){
 				$scope.showForm = true;
@@ -191,19 +190,42 @@
 				$scope.showEdit = true;
 				loadTablesByPage(1,7);
 			}
+			$scope.onFileSelect = function($files){
+					 $scope.file = $files[0];
+					 //uncomment if you want to upload image immediately upon selection
+					// console.log(file);
+     				// $upload.upload({
+					// 	url: 'api/v1/tables',
+					// 	method: 'POST',
+					// 	file: file
+					// }).success(function(response){
+					// 	console.log(response.data);
+					// });
+				}
 
-			$scope.updateTable = function(id, number, seats, position, description, available, thumbnail){
-				console.log(thumbnail);
-				tableService.update(id, number, seats, position, description, available, thumbnail)
+			$scope.addNewTable = function(number, seats, position, description, available){
+				tableService.create(number, seats, position, description, available, $scope.file)
 						.success(function(response){
 							$scope.message = response.data;
 						});
 				$scope.showForm = false;
 				emptyFormFields();
-				loadTablesByPage(1,7);
+				loadLastPage();
 			};
 
-			$scope.deleteTable = function(id){
+			$scope.updateTable = function(id, number, seats, position, description, available, pageToLoad){
+				tableService.update(id, number, seats, position, description, available, $scope.file)					
+						.success(function(response){
+							$scope.message = response.data;
+						});
+				
+				$scope.showForm = false;
+				emptyFormFields();
+				loadNthPage(pageToLoad,7);
+			};
+
+			$scope.deleteTable = function(id, index){
+				$scope.tables.splice(index,1);
 				tableService.delete(id)
 					.success(function(response){
 						$scope.message = response.data;

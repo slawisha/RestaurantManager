@@ -25,6 +25,7 @@
     <script src="https://code.angularjs.org/1.2.16/angular-animate.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/lib/ui-bootstrap-tpls-0.11.0.min.js"></script>
+    <script src="js/lib/angular-file-upload.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/services/tableService.js"></script>
     <script src="js/services/authService.js"></script>

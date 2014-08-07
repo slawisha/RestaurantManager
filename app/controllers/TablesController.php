@@ -36,15 +36,7 @@ class TablesController extends \BaseController {
 	 */
 	public function create()
 	{
-		$table = new Table;
-		$table->number = Input::get('number');
-		$table->seats = Input::get('seats');
-		$table->position = Input::get('position');
-		$table->description = Input::get('description');
-		$table->available = Input::get('available');
-		$table->image_url = (Input::file('thumbnail')) ? : '/upload/table_thumb.jpg';
-		$table->save();
-		return Response::json(['data'=>'Table saved'], 200);
+		
 	}
 
 	/**
@@ -55,7 +47,24 @@ class TablesController extends \BaseController {
 	 */
 	public function store()
 	{
-		
+		$table = new Table;
+		$table->number = Input::get('number');
+		$table->seats = Input::get('seats');
+		$table->position = Input::get('position');
+		$table->description = Input::get('description');
+		$table->available = Input::get('available');
+		if(Input::hasFile('file')) 
+		{
+			Input::file('file')->move(public_path() . '/upload', Input::file('file')->getClientOriginalName());
+			$table->image_url = '/upload/' . Input::file('file')->getClientOriginalName();
+		}
+		else
+		{
+		$table->image_url =  '/upload/table_thumb.jpg';
+		}
+		$table->save();
+				
+		return Response::json(['data'=>'Table saved'], 200);
 	}
 
 	/**
@@ -84,7 +93,9 @@ class TablesController extends \BaseController {
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * Update the specified resource in storage. Here is used POST 
+	 * because Symphony HTTP Foundation can not understand 'Content-Type':'multipart/form-data' when using put
+	 * see routes.php
 	 * PUT /table/{id}
 	 *
 	 * @param  int  $id
@@ -92,19 +103,26 @@ class TablesController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//dd(Input::all());
 		$table = Table::find($id);
 		$table->number = Input::get('number');
 		$table->seats = Input::get('seats');
 		$table->position = Input::get('position');
 		$table->description = Input::get('description');
 		$table->available = Input::get('available');
-		$table->image_url = (Input::file('thumbnail')) ? : '/upload/table_thumb.jpg';
-		$table->save();
-
+		if(Input::hasFile('file')) 
+		{
+			Input::file('file')->move(public_path() . '/upload', Input::file('file')->getClientOriginalName());
+			$table->image_url = '/upload/' . Input::file('file')->getClientOriginalName();
+		}
+		$table->save();		
 		return Response::json(['data'=>'Table updated'], 200);
 	}
 
+	/**
+	 * make table reserved
+	 * @param  int $id 
+	 * @return void     
+	 */
 	public function reserve($id)
 	{
 		$table = Table::find($id);

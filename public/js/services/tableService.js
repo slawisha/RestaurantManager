@@ -1,6 +1,6 @@
 (function(){
 	angular.module('restaurantApp')
-		.factory('tableService', function($http){
+		.factory('tableService', function($http, $upload){
 			return {
 				all: function(page, perPage){
 					return $http.get('/api/v1/tables/?page=' + page + '&perPage=' + perPage);
@@ -9,17 +9,22 @@
 					return $http.get('/api/v1/tables/' + id);
 				},
 				create:function(number, seats, position, description, available, thumbnail){
-					return $http({
+					return $upload.upload({
 						method: 'POST',
 						url: 'api/v1/tables',
-						params: {number:number, seats:seats, position:position, description:description, available:available,thumbnail:thumbnail}
+						headers: {'Content-Type':'multipart/form-data'},
+						data: {number:number, seats:seats, position:position, description:description, available:available},
+						file: thumbnail
 					});
 				},
 				update:function(id, number, seats, position, description, available, thumbnail){
-					return $http({
-						method: 'PUT',
+					return $upload.upload({
 						url: 'api/v1/tables/' + id,
-						params: {number:number, seats:seats, position:position, description:description, available:available,thumbnail:thumbnail}
+						method: 'POST',
+						headers: {'Content-Type':'multipart/form-data'},
+						// headers: {'Content-Type':'x-www-form-urlencoded'},
+						data: {number:number, seats:seats, position:position, description:description, available:available},
+						file: thumbnail
 					});
 				},
 				delete:function(id){
