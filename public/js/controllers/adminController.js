@@ -4,6 +4,7 @@
 
 			$scope.showForm = false;
 			$scope.showEdit = false;
+			$scope.loading = false;
 
 			$scope.toggleForm = function(){
 				$scope.showForm = !$scope.showForm;

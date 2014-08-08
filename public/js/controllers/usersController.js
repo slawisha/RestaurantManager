@@ -1,8 +1,9 @@
 (function(){
 	angular.module('restaurantApp')
-		.controller('usersController', function($scope, $rootScope, userService, reservationService){
+		.controller('usersController', function($scope, $rootScope, userService, reservationService, toaster){
 
 			$scope.pages = [];
+			$scope.editUserIndex = null;
 
 			var getUsers = function(){
 				userService.all(1)
@@ -77,12 +78,14 @@
 				userService.save(newUsername, newPassword, newName, newEmail, newTelephone,newAddress,newCity,newRole,newActive).
 					success(function(response){
 						$scope.message = response.data;
+						toaster.pop('success', "", $scope.message);
 					})
 			}
 
-			$scope.editUser = function(id){
+			$scope.editUser = function(id, index){
 				$scope.showForm = true;
 				$scope.userId = id;
+				$scope.editUserIndex = index;
 				userService.show(id)
 					.success(function(response){
 						$scope.newUsername = response.data.username;
@@ -105,20 +108,26 @@
 				userService.update(id,newUsername,newPassword,newName,newEmail,newTelephone,newAddress,newCity,newRole,newActive).
 					success(function(response){
 						$scope.message = response.data;
-					})
-				getUsers();
+						toaster.pop('success', "", $scope.message);
+					});
+				$scope.users.splice($scope.editUserIndex,1); //remove updated users
+				var newUser = {username:newUsername, password:newPassword, name:newName, email:newEmail,
+				 telephone:newTelephone, address:newAddress, city:newCity, role: newRole, active:newActive};
+				$scope.users.splice($scope.editUserIndex,0, newUser); //push back the updated user
+				
 			}
 
-			$scope.deleteUser = function(id){
-				userService.delete(id);
-				getUsers();
+			$scope.deleteUser = function(id, index){
+				userService.delete(id).success(function(response){
+					toaster.pop('success', null, response.data);
+				});
+				$scope.users.splice(index,1);
 			}
 
-			$scope.deleteReservation = function(id){
+			$scope.deleteReservation = function(id,index){
 				reservationService.delete(id);
 				$rootScope.$broadcast('reservation:deleted');
-				//load reservations in the sidebar panel
-				getUserReservations();
+				$scope.userReservations.splice(index,1);
 			}
 
 			//listen to event reservation:made raised inside tablesController inside method makeReservation

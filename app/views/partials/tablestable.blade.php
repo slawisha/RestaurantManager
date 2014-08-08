@@ -5,7 +5,7 @@
 	</thead>
 	<tbody>
 		<tr ng-repeat="table in tablesBackend">
-		<td>@{{table.number}}||@{{$index}}</td>
+		<td>@{{table.number}}</td>
 		<td>@{{table.seats}}</td>
 		<td>@{{table.position}}</td>
 		<td>@{{table.description}}</td>
@@ -13,7 +13,7 @@
 		<td><img width="120" heigth="72" ng-src="@{{table.image_url}}"/></td>
 		<td>
 		<button class="btn btn-sm btn-warning" ng-click="editTable(table.id)">Edit</button>
-		<button class="btn btn-sm btn-danger" ng-click="deleteTable(table.id, $index)">Delete</button>	
+		<button class="btn btn-sm btn-danger" ng-click="deleteTable(table.id, currentPage, $index)">Delete</button>	
 		</td></tr>
 	</tbody>
 </table>

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">  
-<div class="row breathe80">  
+<div class="row">  
 	<div class="col-md-9" ng-controller="tableController">
 	<h3>Reservations</h3>
 	@if(Auth::guest())
@@ -57,7 +57,7 @@
               <!-- table number instead table_id-->
                <div>Table: @{{reservation.table_number}}</div>
               <div>Time: @{{reservation.reservation_start}}</div>
-              <div><button class="btn btn-sm btn-danger" ng-click="deleteReservation(reservation.id)">Cancel</button></div>
+              <div><button class="btn btn-sm btn-danger" ng-click="deleteReservation(reservation.id, $index)">Cancel</button></div>
           </li>
         </ul>
       </div>

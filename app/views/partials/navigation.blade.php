@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-            <a class="navbar-brand" href="/">Restaurant Manager</a>
+            <a class="navbar-brand" href="/">Restaurant Manager Demo</a>
             </div>
             <ul class="nav navbar-nav">
             <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
@@ -23,6 +23,7 @@
             @endif
             </ul>
             <ul class="nav navbar-nav pull-right">
+                <li><a href="#"><i class="fa fa-spinner fa-spin fa-2x" ng-show="loading"></i></li></a>
                 <li><a href="https://github.com/slawisha/RestaurantManager"><i class="fa fa-github fa-1x"></i> Github</a></li>
             </ul>
         </nav>

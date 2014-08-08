@@ -125,7 +125,7 @@ class UsersController extends \BaseController {
 		$user->active = Input::get('active');
 		$user->save();
 
-		return Response::json(['data'=>'User saved'], 200);
+		return Response::json(['data'=>'User updated'], 200);
 	}
 
 	/**
@@ -138,6 +138,7 @@ class UsersController extends \BaseController {
 	public function destroy($id)
 	{
 		User::find($id)->delete();
+		return Response::json(['data' => 'User deleted'], 200);
 	}
 
 	public function reservations()

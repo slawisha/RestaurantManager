@@ -1,5 +1,10 @@
+body{
+	padding-top: 70px;
+}
+
 .carousel{
 	width: 100%;
+	margin-top: -20px;
 	overflow: hidden;
 }
 
@@ -15,7 +20,7 @@
 
 .carousel-indicators{
 position: absolute;
-top: 15px;
+top: 35px;
 left: 97%;
 height:20px;	
 }
@@ -88,7 +93,7 @@ margin-top: 40px;
 
 /*** form wrapper ***/
 .form-wrapper{
-	margin-top: 80px;
+	margin-top: 10px;
 	padding: 0;
 }
 

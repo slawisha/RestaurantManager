@@ -1,6 +1,6 @@
 (function(){
 	angular.module('restaurantApp')
-		.controller('tableController', function($scope, $rootScope, $upload, tableService, authService, reservationService){
+		.controller('tableController', function($scope, $rootScope, $upload, tableService, authService, reservationService, toaster){
 
 			$scope.logged = null;
 			$scope.hideSpinner = true;
@@ -53,6 +53,7 @@
 
 			//pagination
 			var loadTablesByPage = function(page, perPage) {
+				$scope.loading = true;
 				tableService.all(page, perPage)
 					.success(function(response){
 						$scope.pages = [];
@@ -62,8 +63,9 @@
 						for (i=1; i<=$scope.lastPage; i++){
 							$scope.pages.push(i);
 						}  
+						$scope.loading = false;
 					});
-					$scope.currentPage = page;
+				$scope.currentPage = page;
 			}
 
 			loadTablesByPage(1,7);
@@ -102,9 +104,10 @@
 					$scope.reservedTables.push(tableId);
 					//raise an event and send it to the root scope
 					$rootScope.$broadcast('reservation:made');
-					alert('Table' + tableNumber + ' booked for ' + day + '/' + month + '/' + year + ' ' + time);
+					toaster.pop('success','', 'Table' + tableNumber + ' booked for ' + day + '/' + month + '/' + year + ' ' + time);
 				} else {
-					alert('You must be logged in to make reservations');
+					//alert('You must be logged in to make reservations');
+					toaster.pop('error', "Please login", "You must be logged in to make reservations");
 				}
 			}
 
@@ -168,15 +171,9 @@
 				//emptyFormFields();				
 			}
 
-			// $scope.filesChanged = function(element){
-			// 	$scope.thumbnail = element.files;
-			// 	$scope.$apply();				
-			// }
-
-			
-
 			$scope.editTable = function(id){
 				$scope.showForm = true;
+				$scope.loading = true;
 				$scope.tableId = id;
 				tableService.show(id)
 					.success(function(response){
@@ -186,10 +183,11 @@
 						$scope.newDescription = response.data.description;
 						$scope.newAvailable = response.data.available;
 						$scope.newThumbnail = response.data.image_url;
+						$scope.loading = false;
 					});
 				$scope.showEdit = true;
-				loadTablesByPage(1,7);
 			}
+
 			$scope.onFileSelect = function($files){
 					 $scope.file = $files[0];
 					 //uncomment if you want to upload image immediately upon selection
@@ -207,16 +205,18 @@
 				tableService.create(number, seats, position, description, available, $scope.file)
 						.success(function(response){
 							$scope.message = response.data;
+							toaster.pop('success', "", $scope.message);
 						});
 				$scope.showForm = false;
 				emptyFormFields();
-				loadLastPage();
+				$scope.loadLastPage();
 			};
 
 			$scope.updateTable = function(id, number, seats, position, description, available, pageToLoad){
 				tableService.update(id, number, seats, position, description, available, $scope.file)					
 						.success(function(response){
 							$scope.message = response.data;
+							toaster.pop('success', "", $scope.message);
 						});
 				
 				$scope.showForm = false;
@@ -224,11 +224,12 @@
 				loadNthPage(pageToLoad,7);
 			};
 
-			$scope.deleteTable = function(id, index){
-				$scope.tables.splice(index,1);
+			$scope.deleteTable = function(id, currentPage, index){
+				$scope.tablesBackend.splice(index,1);
 				tableService.delete(id)
 					.success(function(response){
 						$scope.message = response.data;
+						toaster.pop('success', "", $scope.message);
 					});
 			}
 

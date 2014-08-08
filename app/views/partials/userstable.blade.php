@@ -13,8 +13,8 @@
 			<td>@{{user.city}}</td>
 			<td>@{{user.role}}</td>
 			<td>@{{user.active}}</td>
-			<td><button class="btn btn-sm btn-warning" ng-click="editUser(user.id)">Edit</button>
-			<button class="btn btn-sm btn-danger" ng-click="deleteUser(user.id)">Delete</button></td>
+			<td><button class="btn btn-sm btn-warning" ng-click="editUser(user.id, $index)">Edit</button>
+			<button class="btn btn-sm btn-danger" ng-click="deleteUser(user.id, $index)">Delete</button></td>
 		</tr>
 	</tbody>	
 </table>

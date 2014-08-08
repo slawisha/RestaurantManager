@@ -12,8 +12,8 @@
 		<td>@{{reservation.reservation_end.date}}</td>
 		<td>@{{reservation.active}}</td>
 		<td>
-		<button class="btn btn-sm btn-warning" ng-click="editReservation(reservation.id)">Edit</button>
-		<button class="btn btn-sm btn-danger" ng-click="deleteReservation(reservation.id)">Delete</button>
+		<button class="btn btn-sm btn-warning" ng-click="editReservation(reservation.id, $index)">Edit</button>
+		<button class="btn btn-sm btn-danger" ng-click="deleteReservation(reservation.id, $index)">Delete</button>
 		</td></tr>
 	</tbody>
 </table>
@@ -23,6 +23,10 @@
   	<li ng-class="{'disabled':currentPage==lastPage}"><a ng-click="loadLastPage()">&raquo;</a></li>
 </ul>
 <form ng-show="showForm" name="reservationsForm" class="breathe col-md-4" novalidate>
+	<div class="form-group">
+		User<input type="text" name="user" ng-model="newUser" class="form-control" ng-disabled="true" required ng-minlength=5>
+		 <em class="muted" ng-show="reservationsForm.user.$pristine && reservationsForm.user.$invalid">Required. Minimum 5 characters</em>
+	</div>
 	<div class="form-group">
 		Username<input type="text" name="username" ng-model="newUsername" class="form-control" ng-disabled="true" required ng-minlength=5>
 		 <em class="muted" ng-show="reservationsForm.username.$pristine && reservationsForm.username.$invalid">Required. Minimum 5 characters</em>
@@ -49,7 +53,7 @@
         <em class="muted" ng-show="usersForm.active.$pristine && usersForm.active.$invalid">Required</em>
 	</div>
 	<div class="form-group">
-		<button class="btn btn-success" ng-click="updateReservation(reservationsForm.$valid && reservationId, newUsername, newTable, newStart, newEnd, newActive)">Update</button>
+		<button class="btn btn-success" ng-click="updateReservation(reservationsForm.$valid && reservationId, newUser, newUsername, newTable, newStart, newEnd, newActive)">Update</button>
 		<button class="btn btn-danger" ng-click="toggleForm()">Cancel</button>
 	</div>
 </form>
