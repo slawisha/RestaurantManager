@@ -35,7 +35,6 @@
     <script src="js/services/authService.js"></script>
     <script src="js/services/reservationService.js"></script>
     <script src="js/services/userService.js"></script>
-    <script src="js/controllers/masterController.js"></script>
     <script src="js/controllers/indexController.js"></script>
     <script src="js/controllers/adminController.js"></script>
     <script src="js/controllers/tableController.js"></script>
