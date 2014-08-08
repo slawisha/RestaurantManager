@@ -22,11 +22,11 @@ You are free to install and use this app for production (See LICENCE.md). You ne
 	DB_PASS - Database pass
 
 ##Screenshots
-![alt text](https://github.com/slawisha/RestaurantManager/restMan0.jpg")
+![alt text](https://github.com/slawisha/RestaurantManager/blob/master/restMan0.jpg")
 
-![alt text](https://github.com/slawisha/RestaurantManager/restMan1.jpg")
+![alt text](https://github.com/slawisha/RestaurantManager/blob/master/restMan1.jpg")
 
-![alt text](https://github.com/slawisha/RestaurantManager/restMan2.jpg")
+![alt text](https://github.com/slawisha/RestaurantManager/blob/master/restMan2.jpg")
 
 
 ## Todo
