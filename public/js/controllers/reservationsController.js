@@ -4,6 +4,7 @@
 
 			$scope.pages = [];
 			$scope.editReservationIndex = null;
+			$scope.loading = false;
 
 			var loadReservations = function(){
 				reservationService.all(1)

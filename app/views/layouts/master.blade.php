@@ -15,7 +15,7 @@
       <script src="../../assets/js/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body ng-app="restaurantApp" ng-controller="masterController">
+  <body ng-app="restaurantApp">
   <toaster-container></toaster-container>
   	@include('partials.navigation')
     @yield('content')

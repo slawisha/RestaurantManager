@@ -4,6 +4,7 @@
 
 			$scope.pages = [];
 			$scope.editUserIndex = null;
+			$scope.loading = false;
 
 			var getUsers = function(){
 				userService.all(1)

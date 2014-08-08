@@ -4,6 +4,7 @@
 
 			$scope.logged = null;
 			$scope.hideSpinner = true;
+			$scope.loading = false;
 			$scope.showForm = false;
 			$scope.pages = [];
 			$scope.start =7;
