@@ -81,9 +81,10 @@
 				console.log($scope.tableList);
 				reservationService.show(id)
 					.success(function(response){
+						console.log(response.data.table_number);
 						$scope.newUser = response.data.user;
 						$scope.newUsername = response.data.username;										
-						$scope.newTable = response.data.table;		
+						$scope.newTable = response.data.table_number;		
 						$scope.newStart = response.data.reservation_start.date;		
 						$scope.newEnd = response.data.reservation_end.date;		
 						$scope.newActive = response.data.active;		

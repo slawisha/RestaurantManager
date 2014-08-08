@@ -22,6 +22,7 @@
     @include('partials.footer')
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.2.16/angular-route.min.js"></script>
     <script src="http://code.angularjs.org/1.2.16/angular-animate.min.js" ></script>

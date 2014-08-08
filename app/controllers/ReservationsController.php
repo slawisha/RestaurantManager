@@ -63,6 +63,7 @@ class ReservationsController extends \BaseController {
 		$reservation->reservation_end = $date->addHours(3);
 		$reservation->active = 1;
 		$reservation->save();
+
 	}
 
 	/**
@@ -100,13 +101,16 @@ class ReservationsController extends \BaseController {
 	public function update($id)
 	{
 		$user = User::whereUsername(Input::get('username'))->first();
+		$table = Table::whereNumber(Input::get('table'))->first();
 		$reservation = Reservation::find($id);
 		$reservation->user_id = $user->id;
-		$reservation->table_id = Input::get('table');
+		$reservation->table_id = $table->id;
 		$reservation->reservation_start = Input::get('start');
 		$reservation->reservation_end = Input::get('end');
 		$reservation->active = Input::get('active');
 		$reservation->save();
+
+		return Response::json(['data' => 'Reservation updated'], 200);
 	}
 
 	/**
@@ -141,8 +145,6 @@ class ReservationsController extends \BaseController {
 				$reservedTables[] = $reservation->table_id;
 			} 		
 		}
-		
-
 		return Response::json(['data' => $reservedTables]);
 	}
 

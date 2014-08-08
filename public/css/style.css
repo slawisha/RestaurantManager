@@ -122,9 +122,13 @@ footer p, footer a{color: #fff;}
 
 .breathe{margin: 40px 0;}
 
-.breathe80{margin: 80px 0;}
+.breathe80{margin-top: 80px;}
+
+.breathe120{margin-top: 120px;}
 
 .center{text-align: center;}
+.left{text-align: left;}
+.right{text-align: right;}
 
 .custom-input{width:70%;}
 

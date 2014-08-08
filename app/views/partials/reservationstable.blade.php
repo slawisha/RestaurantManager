@@ -7,7 +7,7 @@
 		<td>@{{reservation.id}}</td>
 		<td>@{{reservation.user}}</td>
 		<td>@{{reservation.username}}</td>
-		<td>@{{reservation.table}}</td>
+		<td>@{{reservation.table_number}}</td>
 		<td>@{{reservation.reservation_start.date}}</td>
 		<td>@{{reservation.reservation_end.date}}</td>
 		<td>@{{reservation.active}}</td>
