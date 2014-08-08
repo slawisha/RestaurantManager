@@ -15,7 +15,7 @@
       <script src="../../assets/js/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body ng-app="restaurantApp">
+  <body ng-app="restaurantApp" ng-controller="masterController">
   <toaster-container></toaster-container>
   	@include('partials.navigation')
     @yield('content')
@@ -35,6 +35,7 @@
     <script src="js/services/authService.js"></script>
     <script src="js/services/reservationService.js"></script>
     <script src="js/services/userService.js"></script>
+    <script src="js/controllers/masterController.js"></script>
     <script src="js/controllers/indexController.js"></script>
     <script src="js/controllers/adminController.js"></script>
     <script src="js/controllers/tableController.js"></script>
