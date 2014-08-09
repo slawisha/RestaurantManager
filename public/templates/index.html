@@ -1,5 +1,5 @@
 <div class="carousel">
-    <carousel interval="myInterval">
+    <carousel interval="myInterval" disable-animation="true">
       <slide ng-repeat="slide in slides" active="slide.active">
         <img ng-src="{{slide.image}}" style="margin:auto;">
         <div class="carousel-caption">
@@ -33,7 +33,7 @@
 	<div class="row social breathe120">
 		<div class="col-md-3 col-md-offset-3 right">
 		<a href="https://twitter.com/share" class="twitter-share-button" data-text="Restaurant Manager Demo built with Laravel4 and Angularjs by @slawisha75" data-size="large" data-hashtags="restaurantmanager">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 		</div>
 		<div class="fb-like col-md-3  left">
 			<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Frestaurantmanager.gopagoda.com&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;share=true&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>

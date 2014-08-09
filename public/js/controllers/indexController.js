@@ -1,7 +1,7 @@
 (function(){
 	angular.module('restaurantApp')
 		.controller('indexController', function($scope){
-			$scope.myInterval = 5000;
+			$scope.myInterval = 3000;
 			$scope.slides = [
 				{image: 'slider/slide1.jpg', title : 'Excellent atmosphere', text: 'We will make you feel pleasant and important'},
 				{image: 'slider/slide2.jpg', title : 'Delicious food and drinks', text: 'Delicious food and drinks from aroud the world'},

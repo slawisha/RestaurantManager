@@ -7,7 +7,7 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/united/bootstrap.min.css" rel="stylesheet">
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.4/toaster.css" rel="stylesheet" />
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.4/toaster.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}" >    
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -25,10 +25,11 @@
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.2.16/angular-route.min.js"></script>
-    <script src="http://code.angularjs.org/1.2.16/angular-animate.min.js" ></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.4/toaster.js"></script> 
+    <script src="https://code.angularjs.org/snapshot/angular-animate.min.js" ></script>
+    
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/lib/ui-bootstrap-tpls-0.11.0.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.4/toaster.js"></script> 
     <script src="js/lib/angular-file-upload.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/services/tableService.js"></script>
@@ -40,5 +41,6 @@
     <script src="js/controllers/tableController.js"></script>
     <script src="js/controllers/usersController.js"></script>
     <script src="js/controllers/reservationsController.js"></script>
+    <script src="js/directives/disableAnimation.js"></script>
   </body>
 </html>
