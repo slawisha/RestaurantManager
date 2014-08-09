@@ -1,7 +1,4 @@
 <?php
-Route::get('test', function(){
-	dd(User::orderBy('id','DESC')->first()->id);
-});
 
 Route::get('/', function()
 {
