@@ -6,13 +6,13 @@ Route::get('/', function()
 });
 
 
-Route::get('/register', 'PagesController@register');
+Route::get('/register',  'PagesController@register');
 Route::get('/reservation', 'PagesController@reservation');
 Route::get('/login', 'SessionsController@create');
 Route::get('/logout', 'SessionsController@destroy');
 Route::get('/admin', ['before'=> ['auth', 'member'], 'uses'=> 'PagesController@admin']);
-Route::post('/sessions/store', 'SessionsController@store');
-Route::post('/users/store', 'UsersController@store');
+Route::post('/sessions/store', ['before' => 'csrf', 'uses'=>'SessionsController@store']);
+Route::post('/users/store', ['before' =>'csrf', 'uses' => 'UsersController@store']);
 Route::controller('password','RemindersController');
 
 
