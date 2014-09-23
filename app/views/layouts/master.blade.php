@@ -25,7 +25,7 @@
     <script src="js/lib/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.2.16/angular-route.min.js"></script>
-    <script src="https://code.angularjs.org/snapshot/angular-animate.min.js" ></script>
+    <script src="https://code.angularjs.org/1.2.16/angular-animate.min.js" ></script>
     
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/lib/ui-bootstrap-tpls-0.11.0.min.js"></script>
