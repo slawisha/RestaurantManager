@@ -1,6 +1,6 @@
-# [Restaurant Manager Web App](restaurantmanager.gopagoda.com)
+# Restaurant Manager Web App
 
-Web app for managing reservations for a restaurant (or hotel) built in [Laravel 4](http://laravel.com) and [AngularJs](https://angularjs.org) using hybrid approach. Demo of this app can be found [here](http://restaurantmanager.gopagoda.io).
+Web app for managing reservations for a restaurant (or hotel) built in [Laravel 4](http://laravel.com) and [AngularJs](https://angularjs.org) using hybrid approach.
 
 ## Local Instalation 
 Clone the repo and cd into the directory, then run composer install form the command line. After installation has finished run: 
