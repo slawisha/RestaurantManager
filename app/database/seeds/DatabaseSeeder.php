@@ -44,12 +44,12 @@ class DatabaseSeeder extends Seeder {
 	private function cleanDatabase()
 	{
 		//uncomment if using mysql, comment if using sqlite
-		DB::statement('SET FOREIGN_KEY_CHECKS=0'); //to be able to truncate table with foreign key contraints
+		//DB::statement('SET FOREIGN_KEY_CHECKS=0'); //to be able to truncate table with foreign key contraints
 		foreach ($this->tables as $table) 
 		{
 			DB::table($table)->truncate();	
 		}
-		DB::statement('SET FOREIGN_KEY_CHECKS=1');
+		//DB::statement('SET FOREIGN_KEY_CHECKS=1');
 	}
 
 }

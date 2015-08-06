@@ -15,6 +15,11 @@ from the command line. The App uses sqlite in development enviroment. You should
 	
 	localhost:8000
 
+Admin credentials
+
+	admin@restaurantapp.com
+	admin
+
 ##Screenshots
 
 ![alt text](https://github.com/slawisha/RestaurantManager/blob/master/restMan0.jpg)

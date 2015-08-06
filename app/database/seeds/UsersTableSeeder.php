@@ -9,7 +9,7 @@ class UsersTableSeeder extends Seeder {
 	{
 		$user = new User;
 		$user->username = "admin";
-		$user->email = "slawisha@yahoo.com";
+		$user->email = "admin@restaurantapp.com";
 		$user->password = Hash::make('admin');
 		$user->active = 1;
 		$user->role_id = 1;
